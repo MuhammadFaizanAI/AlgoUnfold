@@ -30,6 +30,10 @@ jobs:
         with:
           bun-version: latest
 
+      - name: Link Bun globally for subshells
+        if: matrix.platform != 'windows-latest'
+        run: sudo ln -sf $(which bun) /usr/local/bin/bun
+
       - name: Install Rust stable
         uses: dtolnay/rust-toolchain@stable
         with:
@@ -49,6 +53,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          tauriScript: 'bun tauri'
           tagName: app-v__VERSION__
           releaseName: 'AlgoUnfold v__VERSION__'
           releaseBody: 'See the assets below to download for your operating system.'
