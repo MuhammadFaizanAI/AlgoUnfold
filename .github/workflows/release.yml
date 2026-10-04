@@ -1,7 +1,7 @@
 name: Build AppImage
 
 on:
-  workflow_dispatch: # Allows manual trigger from GitHub UI
+  workflow_dispatch:
 
 jobs:
   build-tauri:
@@ -21,6 +21,9 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y libwebkit2gtk-4.1-dev build-essential curl wget file libssl-dev libayatana-appindicator3-dev librsvg2-dev
+
+      - name: Install project dependencies
+        run: bun install
 
       - name: Build Tauri App
         uses: tauri-apps/tauri-action@v0
