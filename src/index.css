@@ -1,130 +1,3510 @@
 @import "tailwindcss";
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
-@import "@fontsource-variable/inter";
 
-@custom-variant dark (&:is(.dark *));
+/* ============================================================
+   ALGO UNFOLD
+   Design System + Global UI/UX Foundation
+   Version: 1.0
+   ============================================================ */
 
-@theme inline {
-    --font-heading: var(--font-sans);
-    --font-sans: 'Inter Variable', sans-serif;
-    --color-sidebar-ring: var(--sidebar-ring);
-    --color-sidebar-border: var(--sidebar-border);
-    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-    --color-sidebar-accent: var(--sidebar-accent);
-    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-    --color-sidebar-primary: var(--sidebar-primary);
-    --color-sidebar-foreground: var(--sidebar-foreground);
-    --color-sidebar: var(--sidebar);
-    --color-chart-5: var(--chart-5);
-    --color-chart-4: var(--chart-4);
-    --color-chart-3: var(--chart-3);
-    --color-chart-2: var(--chart-2);
-    --color-chart-1: var(--chart-1);
-    --color-ring: var(--ring);
-    --color-input: var(--input);
-    --color-border: var(--border);
-    --color-destructive: var(--destructive);
-    --color-accent-foreground: var(--accent-foreground);
-    --color-accent: var(--accent);
-    --color-muted-foreground: var(--muted-foreground);
-    --color-muted: var(--muted);
-    --color-secondary-foreground: var(--secondary-foreground);
-    --color-secondary: var(--secondary);
-    --color-primary-foreground: var(--primary-foreground);
-    --color-primary: var(--primary);
-    --color-popover-foreground: var(--popover-foreground);
-    --color-popover: var(--popover);
-    --color-card-foreground: var(--card-foreground);
-    --color-card: var(--card);
-    --color-foreground: var(--foreground);
-    --color-background: var(--background);
-    --radius-sm: calc(var(--radius) * 0.6);
-    --radius-md: calc(var(--radius) * 0.8);
-    --radius-lg: var(--radius);
-    --radius-xl: calc(var(--radius) * 1.4);
-    --radius-2xl: calc(var(--radius) * 1.8);
-    --radius-3xl: calc(var(--radius) * 2.2);
-    --radius-4xl: calc(var(--radius) * 2.6);
-}
+
+/* ============================================================
+   01. DESIGN TOKENS
+   ============================================================ */
 
 :root {
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.145 0 0);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.205 0 0);
-    --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(0.97 0 0);
-    --secondary-foreground: oklch(0.205 0 0);
-    --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
-    --accent: oklch(0.97 0 0);
-    --accent-foreground: oklch(0.205 0 0);
-    --destructive: oklch(0.577 0.245 27.325);
-    --border: oklch(0.922 0 0);
-    --input: oklch(0.922 0 0);
-    --ring: oklch(0.708 0 0);
-    --chart-1: oklch(0.87 0 0);
-    --chart-2: oklch(0.556 0 0);
-    --chart-3: oklch(0.439 0 0);
-    --chart-4: oklch(0.371 0 0);
-    --chart-5: oklch(0.269 0 0);
-    --radius: 0.625rem;
-    --sidebar: oklch(0.985 0 0);
-    --sidebar-foreground: oklch(0.145 0 0);
-    --sidebar-primary: oklch(0.205 0 0);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.97 0 0);
-    --sidebar-accent-foreground: oklch(0.205 0 0);
-    --sidebar-border: oklch(0.922 0 0);
-    --sidebar-ring: oklch(0.708 0 0);
+
+  /* ----------------------------------------------------------
+     BRAND
+     ---------------------------------------------------------- */
+
+  --au-brand: #4b8fbd;
+  --au-brand-hover: #5b9dcc;
+  --au-brand-active: #3f7fa9;
+
+  --au-brand-soft: rgba(75, 143, 189, 0.10);
+  --au-brand-medium: rgba(75, 143, 189, 0.16);
+  --au-brand-strong: rgba(75, 143, 189, 0.25);
+
+
+  /* ----------------------------------------------------------
+     APPLICATION BACKGROUND
+     ---------------------------------------------------------- */
+
+  --au-background: #05080d;
+
+  --au-surface: #080d14;
+  --au-surface-elevated: #0b1119;
+  --au-surface-high: #0e1822;
+  --au-surface-hover: #101b26;
+  --au-surface-active: #122131;
+
+
+  /* ----------------------------------------------------------
+     BORDERS
+     ---------------------------------------------------------- */
+
+  --au-border: #172331;
+  --au-border-subtle: #101a25;
+  --au-border-strong: #223344;
+
+  --au-border-focus: var(--au-brand);
+
+
+  /* ----------------------------------------------------------
+     TEXT
+     ---------------------------------------------------------- */
+
+  --au-text: #e8edf2;
+  --au-text-secondary: #a4b2bf;
+  --au-text-muted: #687786;
+  --au-text-disabled: #465461;
+
+  --au-text-inverse: #061018;
+
+
+  /* ----------------------------------------------------------
+     SEMANTIC COLORS
+     ---------------------------------------------------------- */
+
+  /* Success */
+  --au-success: #4fa879;
+  --au-success-hover: #5cb888;
+  --au-success-soft: rgba(79, 168, 121, 0.10);
+  --au-success-medium: rgba(79, 168, 121, 0.18);
+
+  /* Warning */
+  --au-warning: #c9a35a;
+  --au-warning-hover: #d5b16a;
+  --au-warning-soft: rgba(201, 163, 90, 0.10);
+  --au-warning-medium: rgba(201, 163, 90, 0.18);
+
+  /* Error */
+  --au-error: #d85f67;
+  --au-error-hover: #e06d75;
+  --au-error-soft: rgba(216, 95, 103, 0.10);
+  --au-error-medium: rgba(216, 95, 103, 0.18);
+
+  /* Information */
+  --au-info: #679fc5;
+  --au-info-soft: rgba(103, 159, 197, 0.10);
+
+  /* Algorithm */
+  --au-algorithm: #8b7cc8;
+  --au-algorithm-hover: #9b8dd8;
+  --au-algorithm-soft: rgba(139, 124, 200, 0.10);
+  --au-algorithm-medium: rgba(139, 124, 200, 0.18);
+
+  /* Memory */
+  --au-memory: #c58a55;
+  --au-memory-hover: #d49a63;
+  --au-memory-soft: rgba(197, 138, 85, 0.10);
+  --au-memory-medium: rgba(197, 138, 85, 0.18);
+
+  /* Pointer */
+  --au-pointer: #b77ac8;
+  --au-pointer-soft: rgba(183, 122, 200, 0.10);
+
+  /* Neutral */
+  --au-neutral: #8b99a6;
+  --au-neutral-soft: rgba(139, 153, 166, 0.10);
+
+
+  /* ----------------------------------------------------------
+     SHADCN COMPATIBILITY TOKENS
+     ---------------------------------------------------------- */
+
+  --background: var(--au-background);
+  --foreground: var(--au-text);
+
+  --card: var(--au-surface);
+  --card-foreground: var(--au-text);
+
+  --popover: var(--au-surface-elevated);
+  --popover-foreground: var(--au-text);
+
+  --primary: var(--au-brand);
+  --primary-foreground: var(--au-text-inverse);
+
+  --secondary: #0d151f;
+  --secondary-foreground: #d9e2ea;
+
+  --muted: #091019;
+  --muted-foreground: #71808f;
+
+  --accent: #101c29;
+  --accent-foreground: var(--au-text);
+
+  --destructive: var(--au-error);
+  --destructive-foreground: #fff5f5;
+
+  --border: var(--au-border);
+  --input: var(--au-border);
+  --ring: var(--au-brand);
+
+  --radius: 0.5rem;
+
+
+  /* ----------------------------------------------------------
+     RADIUS SYSTEM
+     ---------------------------------------------------------- */
+
+  --au-radius-xs: 4px;
+  --au-radius-sm: 6px;
+  --au-radius-md: 8px;
+  --au-radius-lg: 12px;
+  --au-radius-xl: 16px;
+  --au-radius-2xl: 20px;
+  --au-radius-pill: 999px;
+
+
+  /* ----------------------------------------------------------
+     SPACING SYSTEM
+     Base unit = 4px
+     ---------------------------------------------------------- */
+
+  --au-space-1: 4px;
+  --au-space-2: 8px;
+  --au-space-3: 12px;
+  --au-space-4: 16px;
+  --au-space-5: 20px;
+  --au-space-6: 24px;
+  --au-space-7: 28px;
+  --au-space-8: 32px;
+  --au-space-10: 40px;
+  --au-space-12: 48px;
+  --au-space-16: 64px;
+  --au-space-20: 80px;
+
+
+  /* ----------------------------------------------------------
+     APPLICATION DIMENSIONS
+     ---------------------------------------------------------- */
+
+  --au-titlebar-height: 48px;
+  --au-navigation-width: 56px;
+
+  --au-min-window-width: 1000px;
+  --au-min-window-height: 650px;
+
+
+  /* ----------------------------------------------------------
+     CONTROL HEIGHTS
+     ---------------------------------------------------------- */
+
+  --au-control-xs: 28px;
+  --au-control-sm: 32px;
+  --au-control-md: 36px;
+  --au-control-lg: 40px;
+  --au-control-xl: 44px;
+
+
+  /* ----------------------------------------------------------
+     TYPOGRAPHY
+     ---------------------------------------------------------- */
+
+  --au-font-sans:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  --au-font-mono:
+    "JetBrains Mono",
+    "Cascadia Code",
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    monospace;
+
+
+  /* ----------------------------------------------------------
+     FONT SIZES
+     ---------------------------------------------------------- */
+
+  --au-text-xs: 11px;
+  --au-text-sm: 12px;
+  --au-text-md: 14px;
+  --au-text-lg: 16px;
+  --au-text-xl: 18px;
+  --au-text-2xl: 24px;
+  --au-text-3xl: 28px;
+  --au-text-4xl: 32px;
+
+
+  /* ----------------------------------------------------------
+     FONT WEIGHTS
+     ---------------------------------------------------------- */
+
+  --au-weight-normal: 400;
+  --au-weight-medium: 500;
+  --au-weight-semibold: 600;
+  --au-weight-bold: 700;
+
+
+  /* ----------------------------------------------------------
+     LINE HEIGHT
+     ---------------------------------------------------------- */
+
+  --au-leading-tight: 1.2;
+  --au-leading-normal: 1.5;
+  --au-leading-relaxed: 1.7;
+
+
+  /* ----------------------------------------------------------
+     SHADOWS
+     ---------------------------------------------------------- */
+
+  --au-shadow-none: none;
+
+  --au-shadow-xs:
+    0 1px 2px rgba(0, 0, 0, 0.20);
+
+  --au-shadow-sm:
+    0 2px 6px rgba(0, 0, 0, 0.22);
+
+  --au-shadow-md:
+    0 8px 24px rgba(0, 0, 0, 0.28);
+
+  --au-shadow-lg:
+    0 16px 40px rgba(0, 0, 0, 0.32);
+
+  --au-shadow-xl:
+    0 24px 64px rgba(0, 0, 0, 0.38);
+
+
+  /* ----------------------------------------------------------
+     MOTION
+     ---------------------------------------------------------- */
+
+  --au-duration-instant: 60ms;
+  --au-duration-fast: 120ms;
+  --au-duration-normal: 160ms;
+  --au-duration-slow: 220ms;
+  --au-duration-slower: 300ms;
+
+  --au-ease-standard:
+    cubic-bezier(0.2, 0, 0, 1);
+
+  --au-ease-out:
+    cubic-bezier(0.16, 1, 0.3, 1);
+
+  --au-ease-in:
+    cubic-bezier(0.7, 0, 0.84, 0);
+
+  --au-ease-spring:
+    cubic-bezier(0.34, 1.56, 0.64, 1);
+
+
+  /* ----------------------------------------------------------
+     Z-INDEX SYSTEM
+     ---------------------------------------------------------- */
+
+  --au-z-base: 0;
+  --au-z-panel: 10;
+  --au-z-sticky: 20;
+  --au-z-titlebar: 30;
+  --au-z-popover: 40;
+  --au-z-dialog: 50;
+  --au-z-command: 60;
+  --au-z-toast: 70;
+  --au-z-critical: 80;
+
+
+  /* ----------------------------------------------------------
+     VISUALIZER
+     ---------------------------------------------------------- */
+
+  --au-canvas-grid: rgba(255, 255, 255, 0.025);
+
+  --au-code-line-current: rgba(75, 143, 189, 0.10);
+  --au-code-line-hover: rgba(255, 255, 255, 0.025);
+
+  --au-memory-change: rgba(197, 138, 85, 0.14);
+
+  --au-selection-color: rgba(75, 143, 189, 0.25);
 }
 
-.dark {
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.205 0 0);
-    --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.205 0 0);
-    --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.922 0 0);
-    --primary-foreground: oklch(0.205 0 0);
-    --secondary: oklch(0.269 0 0);
-    --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.269 0 0);
-    --muted-foreground: oklch(0.708 0 0);
-    --accent: oklch(0.269 0 0);
-    --accent-foreground: oklch(0.985 0 0);
-    --destructive: oklch(0.704 0.191 22.216);
-    --border: oklch(1 0 0 / 10%);
-    --input: oklch(1 0 0 / 15%);
-    --ring: oklch(0.556 0 0);
-    --chart-1: oklch(0.87 0 0);
-    --chart-2: oklch(0.556 0 0);
-    --chart-3: oklch(0.439 0 0);
-    --chart-4: oklch(0.371 0 0);
-    --chart-5: oklch(0.269 0 0);
-    --sidebar: oklch(0.205 0 0);
-    --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.488 0.243 264.376);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.269 0 0);
-    --sidebar-accent-foreground: oklch(0.985 0 0);
-    --sidebar-border: oklch(1 0 0 / 10%);
-    --sidebar-ring: oklch(0.556 0 0);
+
+/* ============================================================
+   02. GLOBAL RESET
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-    }
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* ============================================================
+   03. DOCUMENT
+   ============================================================ */
+
+html {
+  background: var(--au-background);
+  color-scheme: dark;
+  font-family: var(--au-font-sans);
+}
+
+body {
+  background: var(--au-background);
+  color: var(--au-text);
+
+  font-family: var(--au-font-sans);
+  font-size: var(--au-text-md);
+  font-weight: var(--au-weight-normal);
+  line-height: var(--au-leading-normal);
+
+  overflow: hidden;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  text-rendering: optimizeLegibility;
+}
+
+#root {
+  isolation: isolate;
+  background: var(--au-background);
+}
+
+
+/* ============================================================
+   04. SELECTION
+   ============================================================ */
+
+::selection {
+  background: var(--au-selection-color);
+  color: var(--au-text);
+}
+
+
+/* ============================================================
+   05. FOCUS SYSTEM
+   ============================================================ */
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--au-brand);
+  outline-offset: 2px;
+}
+
+.au-focus-ring {
+  outline: 2px solid var(--au-brand);
+  outline-offset: 2px;
+}
+
+
+/* ============================================================
+   06. FORM ELEMENTS
+   ============================================================ */
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  border: 0;
+}
+
+button:disabled,
+input:disabled,
+textarea:disabled,
+select:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+input,
+textarea,
+select {
+  color: var(--au-text);
+  background: var(--au-surface);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--au-text-muted);
+}
+
+
+/* ============================================================
+   07. TYPOGRAPHY
+   ============================================================ */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: var(--au-text-3xl);
+  line-height: var(--au-leading-tight);
+  font-weight: var(--au-weight-semibold);
+  letter-spacing: -0.025em;
+}
+
+h2 {
+  font-size: var(--au-text-lg);
+  line-height: 1.35;
+  font-weight: var(--au-weight-semibold);
+}
+
+h3 {
+  font-size: var(--au-text-md);
+  line-height: 1.4;
+  font-weight: var(--au-weight-semibold);
+}
+
+h4 {
+  font-size: var(--au-text-sm);
+  font-weight: var(--au-weight-semibold);
+}
+
+p {
+  font-size: var(--au-text-md);
+}
+
+
+/* ============================================================
+   08. LINKS
+   ============================================================ */
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--au-text);
+}
+
+
+/* ============================================================
+   09. CODE / EDITOR
+   ============================================================ */
+
+code,
+pre,
+kbd,
+samp {
+  font-family: var(--au-font-mono);
+}
+
+pre {
+  margin: 0;
+  white-space: pre;
+}
+
+.au-code {
+  font-family: var(--au-font-mono);
+  font-size: var(--au-text-sm);
+  line-height: 1.7;
+  font-variant-ligatures: none;
+  tab-size: 2;
+}
+
+
+/* ============================================================
+   10. SCROLLBAR SYSTEM
+   ============================================================ */
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--au-border) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--au-border);
+  border-radius: var(--au-radius-pill);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--au-border-strong);
+}
+
+
+/* ============================================================
+   11. APPLICATION SHELL
+   ============================================================ */
+
+.au-app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--au-background);
+  color: var(--au-text);
+}
+
+.au-app-content {
+  min-width: 0;
+  min-height: 0;
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+
+/* ============================================================
+   12. TITLE BAR
+   ============================================================ */
+
+.au-titlebar {
+  position: relative;
+  z-index: var(--au-z-titlebar);
+
+  height: var(--au-titlebar-height);
+  min-height: var(--au-titlebar-height);
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  user-select: none;
+  -webkit-user-select: none;
+
+  background: var(--au-surface);
+  border-bottom: 1px solid var(--au-border-subtle);
+}
+
+.au-titlebar-drag-region {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.au-titlebar-controls {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.au-titlebar-button {
+  width: 48px;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--au-text-secondary);
+  background: transparent;
+
+  transition:
+    background-color var(--au-duration-fast) ease,
+    color var(--au-duration-fast) ease;
+}
+
+.au-titlebar-button:hover {
+  color: var(--au-text);
+  background: var(--au-surface-high);
+}
+
+.au-titlebar-button-close:hover {
+  color: #ffffff;
+  background: #d83b3b;
+}
+
+
+/* ============================================================
+   13. NAVIGATION RAIL
+   ============================================================ */
+
+.au-navigation {
+  position: relative;
+  z-index: var(--au-z-panel);
+
+  width: var(--au-navigation-width);
+  min-width: var(--au-navigation-width);
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background: var(--au-surface);
+  border-right: 1px solid var(--au-border-subtle);
+}
+
+.au-navigation-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--au-space-2);
+}
+
+.au-navigation-button {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: var(--au-radius-pill);
+
+  color: var(--au-text-muted);
+  background: transparent;
+
+  transition:
+    background-color var(--au-duration-fast) ease,
+    color var(--au-duration-fast) ease;
+}
+
+.au-navigation-button:hover {
+  color: var(--au-text);
+  background: var(--au-surface-high);
+}
+
+.au-navigation-button[data-active="true"] {
+  color: var(--au-brand);
+  background: var(--au-brand-soft);
+}
+
+.au-navigation-button[data-active="true"]:hover {
+  background: var(--au-brand-medium);
+}
+
+
+/* ============================================================
+   14. PANELS
+   ============================================================ */
+
+.au-panel {
+  background: var(--au-surface);
+  border: 1px solid var(--au-border);
+  border-radius: var(--au-radius-lg);
+}
+
+.au-panel-elevated {
+  background: var(--au-surface-elevated);
+  border: 1px solid var(--au-border);
+  border-radius: var(--au-radius-lg);
+  box-shadow: var(--au-shadow-sm);
+}
+
+.au-panel-high {
+  background: var(--au-surface-high);
+  border: 1px solid var(--au-border);
+  border-radius: var(--au-radius-lg);
+}
+
+.au-panel-header {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 var(--au-space-4);
+
+  border-bottom: 1px solid var(--au-border-subtle);
+}
+
+.au-panel-content {
+  min-width: 0;
+  min-height: 0;
+}
+
+
+/* ============================================================
+   15. CARDS
+   ============================================================ */
+
+.au-card {
+  background: var(--au-surface);
+  border: 1px solid var(--au-border);
+  border-radius: var(--au-radius-lg);
+
+  transition:
+    background-color var(--au-duration-fast) ease,
+    border-color var(--au-duration-fast) ease;
+}
+
+.au-card:hover {
+  background: var(--au-surface-high);
+}
+
+.au-card-interactive {
+  cursor: pointer;
+}
+
+.au-card-interactive:hover {
+  border-color: rgba(75, 143, 189, 0.30);
+}
+
+
+/* ============================================================
+   16. BUTTON FOUNDATION
+   ============================================================ */
+
+.au-button {
+  height: var(--au-control-md);
+  padding: 0 var(--au-space-4);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--au-space-2);
+
+  border: 1px solid transparent;
+  border-radius: var(--au-radius-md);
+
+  font-size: var(--au-text-sm);
+  font-weight: var(--au-weight-medium);
+
+  transition:
+    background-color var(--au-duration-fast) ease,
+    border-color var(--au-duration-fast) ease,
+    color var(--au-duration-fast) ease,
+    opacity var(--au-duration-fast) ease;
+}
+
+.au-button-primary {
+  color: var(--au-text-inverse);
+  background: var(--au-brand);
+}
+
+.au-button-primary:hover {
+  background: var(--au-brand-hover);
+}
+
+.au-button-primary:active {
+  background: var(--au-brand-active);
+}
+
+.au-button-secondary {
+  color: var(--au-text);
+  background: var(--au-surface-high);
+  border-color: var(--au-border);
+}
+
+.au-button-secondary:hover {
+  background: var(--au-surface-hover);
+  border-color: var(--au-border-strong);
+}
+
+.au-button-ghost {
+  color: var(--au-text-secondary);
+  background: transparent;
+}
+
+.au-button-ghost:hover {
+  color: var(--au-text);
+  background: var(--au-surface-high);
+}
+
+.au-button-danger {
+  color: #ffffff;
+  background: var(--au-error);
+}
+
+.au-button-danger:hover {
+  background: var(--au-error-hover);
+}
+
+
+/* ============================================================
+   17. ICON BUTTONS
+   ============================================================ */
+
+.au-icon-button {
+  width: var(--au-control-md);
+  height: var(--au-control-md);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: var(--au-radius-md);
+
+  color: var(--au-text-secondary);
+  background: transparent;
+
+  transition:
+    background-color var(--au-duration-fast) ease,
+    color var(--au-duration-fast) ease;
+}
+
+.au-icon-button:hover {
+  color: var(--au-text);
+  background: var(--au-surface-high);
+}
+
+.au-icon-button[data-active="true"] {
+  color: var(--au-brand);
+  background: var(--au-brand-soft);
+}
+
+
+/* ============================================================
+   18. INPUTS
+   ============================================================ */
+
+.au-input {
+  height: var(--au-control-md);
+  width: 100%;
+
+  padding: 0 var(--au-space-3);
+
+  border: 1px solid var(--au-border);
+  border-radius: var(--au-radius-md);
+
+  color: var(--au-text);
+  background: var(--au-surface);
+
+  font-size: var(--au-text-sm);
+
+  transition:
+    border-color var(--au-duration-fast) ease,
+    background-color var(--au-duration-fast) ease;
+}
+
+.au-input:hover {
+  border-color: var(--au-border-strong);
+}
+
+.au-input:focus {
+  border-color: var(--au-brand);
+  background: var(--au-surface-elevated);
+}
+
+
+/* ============================================================
+   19. BADGES
+   ============================================================ */
+
+.au-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+
+  min-height: 22px;
+  padding: 0 8px;
+
+  border-radius: var(--au-radius-pill);
+
+  font-size: 10px;
+  font-weight: var(--au-weight-medium);
+
+  white-space: nowrap;
+}
+
+.au-badge-neutral {
+  color: var(--au-text-secondary);
+  background: var(--au-surface-high);
+  border: 1px solid var(--au-border);
+}
+
+.au-badge-current {
+  color: var(--au-brand);
+  background: var(--au-brand-soft);
+  border: 1px solid rgba(75, 143, 189, 0.25);
+}
+
+.au-badge-success {
+  color: var(--au-success);
+  background: var(--au-success-soft);
+  border: 1px solid rgba(79, 168, 121, 0.25);
+}
+
+.au-badge-warning {
+  color: var(--au-warning);
+  background: var(--au-warning-soft);
+  border: 1px solid rgba(201, 163, 90, 0.25);
+}
+
+.au-badge-error {
+  color: var(--au-error);
+  background: var(--au-error-soft);
+  border: 1px solid rgba(216, 95, 103, 0.25);
+}
+
+.au-badge-algorithm {
+  color: var(--au-algorithm);
+  background: var(--au-algorithm-soft);
+  border: 1px solid rgba(139, 124, 200, 0.25);
+}
+
+.au-badge-memory {
+  color: var(--au-memory);
+  background: var(--au-memory-soft);
+  border: 1px solid rgba(197, 138, 85, 0.25);
+}
+
+
+/* ============================================================
+   20. STATUS INDICATORS
+   ============================================================ */
+
+.au-status-dot {
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+  border-radius: var(--au-radius-pill);
+}
+
+.au-status-dot-current {
+  background: var(--au-brand);
+}
+
+.au-status-dot-success {
+  background: var(--au-success);
+}
+
+.au-status-dot-warning {
+  background: var(--au-warning);
+}
+
+.au-status-dot-error {
+  background: var(--au-error);
+}
+
+.au-status-dot-algorithm {
+  background: var(--au-algorithm);
+}
+
+.au-status-dot-memory {
+  background: var(--au-memory);
+}
+
+
+/* ============================================================
+   21. TOOLTIP
+   ============================================================ */
+
+.au-tooltip {
+  position: relative;
+  z-index: var(--au-z-popover);
+
+  padding: 6px 9px;
+
+  color: var(--au-text);
+  background: var(--au-surface-elevated);
+
+  border: 1px solid var(--au-border);
+  border-radius: var(--au-radius-sm);
+
+  box-shadow: var(--au-shadow-md);
+
+  font-size: var(--au-text-xs);
+  line-height: 1.3;
+
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+
+/* ============================================================
+   22. DIVIDERS
+   ============================================================ */
+
+.au-divider {
+  height: 1px;
+  width: 100%;
+  background: var(--au-border-subtle);
+}
+
+.au-divider-strong {
+  height: 1px;
+  width: 100%;
+  background: var(--au-border);
+}
+
+
+/* ============================================================
+   23. VISUALIZER WORKSPACE
+   ============================================================ */
+
+.au-visualizer {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  background: var(--au-background);
+}
+
+.au-visualizer-header {
+  min-height: 44px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 var(--au-space-4);
+
+  border-bottom: 1px solid var(--au-border-subtle);
+  background: var(--au-surface);
+}
+
+.au-visualizer-workspace {
+  min-width: 0;
+  min-height: 0;
+
+  flex: 1;
+
+  display: flex;
+
+  overflow: hidden;
+}
+
+
+/* ============================================================
+   24. VISUALIZATION CANVAS
+   ============================================================ */
+
+.au-visualizer-canvas {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      var(--au-canvas-grid) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      var(--au-canvas-grid) 1px,
+      transparent 1px
+    );
+
+  background-size: 32px 32px;
+
+  user-select: none;
+}
+
+.au-visualizer-canvas-content {
+  position: absolute;
+  inset: 0;
+
+  transform-origin: center center;
+}
+
+
+/* ============================================================
+   25. VISUALIZER ZOOM CONTROLS
+   ============================================================ */
+
+.au-zoom-controls {
+  position: absolute;
+
+  right: var(--au-space-4);
+  bottom: var(--au-space-4);
+
+  z-index: var(--au-z-panel);
+
+  display: flex;
+  align-items: center;
+  gap: 2px;
+
+  padding: 4px;
+
+  border: 1px solid var(--au-border);
+  border-radius: var(--au-radius-md);
+
+  background: rgba(8, 13, 20, 0.92);
+
+  box-shadow: var(--au-shadow-sm);
+}
+
+
+/* ============================================================
+   26. CODE PANEL
+   ============================================================ */
+
+.au-code-panel {
+  min-width: 0;
+  min-height: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  background: var(--au-surface);
+  border-right: 1px solid var(--au-border);
+}
+
+.au-code-line {
+  min-height: 24px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 var(--au-space-3);
+
+  color: var(--au-text-secondary);
+
+  transition:
+    background-color var(--au-duration-fast) ease;
+}
+
+.au-code-line:hover {
+  background: var(--au-code-line-hover);
+}
+
+.au-code-line[data-current="true"] {
+  color: var(--au-text);
+  background: var(--au-code-line-current);
+}
+
+.au-code-line-number {
+  width: 36px;
+  flex-shrink: 0;
+
+  color: var(--au-text-muted);
+
+  text-align: right;
+
+  margin-right: var(--au-space-3);
+
+  user-select: none;
+}
+
+.au-code-line[data-current="true"] .au-code-line-number {
+  color: var(--au-brand);
+}
+
+
+/* ============================================================
+   27. MEMORY PANEL
+   ============================================================ */
+
+.au-memory-panel {
+  min-width: 0;
+  min-height: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  background: var(--au-surface);
+}
+
+.au-memory-value {
+  font-family: var(--au-font-mono);
+  color: var(--au-memory);
+}
+
+.au-memory-address {
+  font-family: var(--au-font-mono);
+  color: var(--au-text-muted);
+  font-size: var(--au-text-xs);
+}
+
+.au-memory-changed {
+  background: var(--au-memory-change);
+}
+
+
+/* ============================================================
+   28. VARIABLE / STATE ROWS
+   ============================================================ */
+
+.au-state-row {
+  min-height: 32px;
+
+  display: flex;
+  align-items: center;
+  gap: var(--au-space-3);
+
+  padding: 0 var(--au-space-3);
+
+  border-bottom: 1px solid var(--au-border-subtle);
+}
+
+.au-state-name {
+  color: var(--au-text-secondary);
+  font-family: var(--au-font-mono);
+  font-size: var(--au-text-sm);
+}
+
+.au-state-value {
+  margin-left: auto;
+
+  color: var(--au-text);
+  font-family: var(--au-font-mono);
+  font-size: var(--au-text-sm);
+}
+
+
+/* ============================================================
+   29. EXPLANATION PANEL
+   ============================================================ */
+
+.au-explanation {
+  min-height: 0;
+
+  padding: var(--au-space-3) var(--au-space-4);
+
+  border-top: 1px solid var(--au-border-subtle);
+
+  background: var(--au-surface);
+}
+
+.au-explanation-title {
+  color: var(--au-text-muted);
+
+  font-size: var(--au-text-xs);
+  font-weight: var(--au-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.au-explanation-text {
+  margin-top: 4px;
+
+  color: var(--au-text-secondary);
+
+  font-size: var(--au-text-sm);
+  line-height: 1.5;
+}
+
+
+/* ============================================================
+   30. STEP CONTROLS
+   ============================================================ */
+
+.au-step-controls {
+  min-height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--au-space-3);
+
+  padding: 0 var(--au-space-4);
+
+  border-top: 1px solid var(--au-border);
+  background: var(--au-surface);
+}
+
+.au-step-indicator {
+  min-width: 90px;
+
+  color: var(--au-text-muted);
+
+  font-family: var(--au-font-mono);
+  font-size: var(--au-text-xs);
+
+  text-align: center;
+}
+
+.au-step-current {
+  color: var(--au-text);
+}
+
+
+/* ============================================================
+   31. RESIZABLE PANEL SPLITTERS
+   ============================================================ */
+
+.au-resize-handle {
+  position: relative;
+
+  flex-shrink: 0;
+
+  background: transparent;
+
+  transition:
+    background-color var(--au-duration-fast) ease;
+}
+
+.au-resize-handle-horizontal {
+  width: 4px;
+  cursor: col-resize;
+}
+
+.au-resize-handle-vertical {
+  height: 4px;
+  cursor: row-resize;
+}
+
+.au-resize-handle:hover,
+.au-resize-handle[data-dragging="true"] {
+  background: var(--au-brand);
+}
+
+
+/* ============================================================
+   32. EMPTY STATES
+   ============================================================ */
+
+.au-empty-state {
+  min-height: 200px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: var(--au-space-8);
+
+  text-align: center;
+}
+
+.au-empty-state-icon {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: var(--au-space-4);
+
+  border-radius: var(--au-radius-lg);
+
+  color: var(--au-text-muted);
+  background: var(--au-surface-high);
+
+  border: 1px solid var(--au-border);
+}
+
+.au-empty-state-title {
+  color: var(--au-text);
+
+  font-size: var(--au-text-md);
+  font-weight: var(--au-weight-semibold);
+}
+
+.au-empty-state-description {
+  max-width: 420px;
+
+  margin-top: 6px;
+
+  color: var(--au-text-muted);
+
+  font-size: var(--au-text-sm);
+  line-height: 1.5;
+}
+
+
+/* ============================================================
+   33. LOADING
+   ============================================================ */
+
+.au-skeleton {
+  background:
+    linear-gradient(
+      90deg,
+      var(--au-surface-high),
+      var(--au-surface-hover),
+      var(--au-surface-high)
+    );
+
+  background-size: 200% 100%;
+
+  animation: au-skeleton 1.4s ease-in-out infinite;
+
+  border-radius: var(--au-radius-sm);
+}
+
+@keyframes au-skeleton {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.au-loading-spinner {
+  width: 16px;
+  height: 16px;
+
+  border: 2px solid var(--au-border);
+  border-top-color: var(--au-brand);
+
+  border-radius: 50%;
+
+  animation: au-spin 700ms linear infinite;
+}
+
+@keyframes au-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* ============================================================
+   34. ERROR STATES
+   ============================================================ */
+
+.au-error-state {
+  padding: var(--au-space-6);
+
+  border: 1px solid rgba(216, 95, 103, 0.25);
+  border-radius: var(--au-radius-lg);
+
+  background: var(--au-error-soft);
+}
+
+.au-error-state-title {
+  color: var(--au-error);
+
+  font-size: var(--au-text-md);
+  font-weight: var(--au-weight-semibold);
+}
+
+.au-error-state-description {
+  margin-top: 4px;
+
+  color: var(--au-text-secondary);
+
+  font-size: var(--au-text-sm);
+}
+
+
+/* ============================================================
+   35. SUCCESS STATES
+   ============================================================ */
+
+.au-success-state {
+  border: 1px solid rgba(79, 168, 121, 0.25);
+  background: var(--au-success-soft);
+}
+
+.au-success-text {
+  color: var(--au-success);
+}
+
+
+/* ============================================================
+   36. WARNING STATES
+   ============================================================ */
+
+.au-warning-state {
+  border: 1px solid rgba(201, 163, 90, 0.25);
+  background: var(--au-warning-soft);
+}
+
+.au-warning-text {
+  color: var(--au-warning);
+}
+
+
+/* ============================================================
+   37. DIALOG / MODAL FOUNDATION
+   ============================================================ */
+
+.au-dialog-backdrop {
+  position: fixed;
+  inset: 0;
+
+  z-index: var(--au-z-dialog);
+
+  background: rgba(0, 0, 0, 0.58);
+
+  backdrop-filter: blur(2px);
+}
+
+.au-dialog {
+  position: fixed;
+
+  z-index: var(--au-z-dialog);
+
+  background: var(--au-surface-elevated);
+
+  border: 1px solid var(--au-border);
+
+  border-radius: var(--au-radius-xl);
+
+  box-shadow: var(--au-shadow-xl);
+}
+
+
+/* ============================================================
+   38. POPOVER
+   ============================================================ */
+
+.au-popover {
+  position: relative;
+  z-index: var(--au-z-popover);
+
+  background: var(--au-surface-elevated);
+
+  border: 1px solid var(--au-border);
+  border-radius: var(--au-radius-lg);
+
+  box-shadow: var(--au-shadow-lg);
+}
+
+
+/* ============================================================
+   39. COMMAND PALETTE
+   ============================================================ */
+
+.au-command {
+  position: fixed;
+
+  z-index: var(--au-z-command);
+
+  width: min(640px, calc(100vw - 48px));
+
+  background: var(--au-surface-elevated);
+
+  border: 1px solid var(--au-border);
+
+  border-radius: var(--au-radius-xl);
+
+  box-shadow: var(--au-shadow-xl);
+
+  overflow: hidden;
+}
+
+.au-command-input {
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 var(--au-space-4);
+
+  border-bottom: 1px solid var(--au-border-subtle);
+}
+
+.au-command-item {
+  min-height: 40px;
+
+  display: flex;
+  align-items: center;
+  gap: var(--au-space-3);
+
+  padding: 0 var(--au-space-3);
+
+  border-radius: var(--au-radius-md);
+
+  color: var(--au-text-secondary);
+
+  cursor: pointer;
+
+  transition:
+    background-color var(--au-duration-fast) ease,
+    color var(--au-duration-fast) ease;
+}
+
+.au-command-item:hover,
+.au-command-item[data-selected="true"] {
+  color: var(--au-text);
+  background: var(--au-surface-high);
+}
+
+.au-command-item[data-selected="true"] {
+  box-shadow: inset 2px 0 0 var(--au-brand);
+}
+
+
+/* ============================================================
+   40. TOAST / NOTIFICATIONS
+   ============================================================ */
+
+.au-toast {
+  position: fixed;
+
+  z-index: var(--au-z-toast);
+
+  min-width: 280px;
+  max-width: 420px;
+
+  padding: var(--au-space-3) var(--au-space-4);
+
+  background: var(--au-surface-elevated);
+
+  border: 1px solid var(--au-border);
+
+  border-radius: var(--au-radius-lg);
+
+  box-shadow: var(--au-shadow-lg);
+}
+
+.au-toast-success {
+  border-color: rgba(79, 168, 121, 0.30);
+}
+
+.au-toast-warning {
+  border-color: rgba(201, 163, 90, 0.30);
+}
+
+.au-toast-error {
+  border-color: rgba(216, 95, 103, 0.30);
+}
+
+
+/* ============================================================
+   41. UPDATE INDICATOR
+   ============================================================ */
+
+.au-update-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: var(--au-radius-pill);
+
+  background: var(--au-brand);
+
+  box-shadow:
+    0 0 0 2px var(--au-surface);
+}
+
+
+/* ============================================================
+   42. PROGRESS
+   ============================================================ */
+
+.au-progress-track {
+  width: 100%;
+  height: 6px;
+
+  overflow: hidden;
+
+  border-radius: var(--au-radius-pill);
+
+  background: var(--au-surface-high);
+}
+
+.au-progress-value {
+  height: 100%;
+
+  border-radius: inherit;
+
+  background: var(--au-brand);
+
+  transition: width var(--au-duration-slow) var(--au-ease-out);
+}
+
+.au-progress-success .au-progress-value {
+  background: var(--au-success);
+}
+
+
+/* ============================================================
+   43. INTERACTION STATES
+   ============================================================ */
+
+.au-interactive {
+  transition:
+    background-color var(--au-duration-fast) ease,
+    border-color var(--au-duration-fast) ease,
+    color var(--au-duration-fast) ease,
+    opacity var(--au-duration-fast) ease,
+    transform var(--au-duration-fast) var(--au-ease-out);
+}
+
+.au-pressable:active {
+  transform: scale(0.98);
+}
+
+
+/* ============================================================
+   44. SEMANTIC COLOR UTILITIES
+   ============================================================ */
+
+.au-text-current {
+  color: var(--au-brand);
+}
+
+.au-text-success {
+  color: var(--au-success);
+}
+
+.au-text-warning {
+  color: var(--au-warning);
+}
+
+.au-text-error {
+  color: var(--au-error);
+}
+
+.au-text-algorithm {
+  color: var(--au-algorithm);
+}
+
+.au-text-memory {
+  color: var(--au-memory);
+}
+
+.au-text-pointer {
+  color: var(--au-pointer);
+}
+
+
+/* ============================================================
+   45. SEMANTIC BACKGROUNDS
+   ============================================================ */
+
+.au-bg-current {
+  background: var(--au-brand-soft);
+}
+
+.au-bg-success {
+  background: var(--au-success-soft);
+}
+
+.au-bg-warning {
+  background: var(--au-warning-soft);
+}
+
+.au-bg-error {
+  background: var(--au-error-soft);
+}
+
+.au-bg-algorithm {
+  background: var(--au-algorithm-soft);
+}
+
+.au-bg-memory {
+  background: var(--au-memory-soft);
+}
+
+.au-bg-pointer {
+  background: var(--au-pointer-soft);
+}
+
+
+/* ============================================================
+   46. SEMANTIC BORDERS
+   ============================================================ */
+
+.au-border-current {
+  border-color: rgba(75, 143, 189, 0.35);
+}
+
+.au-border-success {
+  border-color: rgba(79, 168, 121, 0.35);
+}
+
+.au-border-warning {
+  border-color: rgba(201, 163, 90, 0.35);
+}
+
+.au-border-error {
+  border-color: rgba(216, 95, 103, 0.35);
+}
+
+.au-border-algorithm {
+  border-color: rgba(139, 124, 200, 0.35);
+}
+
+.au-border-memory {
+  border-color: rgba(197, 138, 85, 0.35);
+}
+
+.au-border-pointer {
+  border-color: rgba(183, 122, 200, 0.35);
+}
+
+
+/* ============================================================
+   47. VISUALIZER STATE SEMANTICS
+   ============================================================ */
+
+.au-state-normal {
+  color: var(--au-text-secondary);
+}
+
+.au-state-current {
+  color: var(--au-brand);
+}
+
+.au-state-compared {
+  color: var(--au-algorithm);
+}
+
+.au-state-changed {
+  color: var(--au-memory);
+}
+
+.au-state-found {
+  color: var(--au-success);
+}
+
+.au-state-invalid {
+  color: var(--au-error);
+}
+
+.au-state-warning {
+  color: var(--au-warning);
+}
+
+
+/* ============================================================
+   48. DATA VISUALIZATION ELEMENTS
+   ============================================================ */
+
+.au-node {
+  background: var(--au-surface-high);
+  border: 1px solid var(--au-border);
+  color: var(--au-text);
+
+  transition:
+    background-color var(--au-duration-normal) var(--au-ease-out),
+    border-color var(--au-duration-normal) var(--au-ease-out),
+    color var(--au-duration-normal) var(--au-ease-out),
+    transform var(--au-duration-normal) var(--au-ease-out);
+}
+
+.au-node-current {
+  background: var(--au-brand-soft);
+  border-color: rgba(75, 143, 189, 0.50);
+  color: var(--au-brand);
+}
+
+.au-node-compared {
+  background: var(--au-algorithm-soft);
+  border-color: rgba(139, 124, 200, 0.50);
+  color: var(--au-algorithm);
+}
+
+.au-node-success {
+  background: var(--au-success-soft);
+  border-color: rgba(79, 168, 121, 0.50);
+  color: var(--au-success);
+}
+
+.au-node-error {
+  background: var(--au-error-soft);
+  border-color: rgba(216, 95, 103, 0.50);
+  color: var(--au-error);
+}
+
+.au-node-memory {
+  background: var(--au-memory-soft);
+  border-color: rgba(197, 138, 85, 0.50);
+  color: var(--au-memory);
+}
+
+
+/* ============================================================
+   49. POINTER / REFERENCE VISUALIZATION
+   ============================================================ */
+
+.au-pointer {
+  color: var(--au-pointer);
+}
+
+.au-pointer-line {
+  stroke: var(--au-pointer);
+}
+
+.au-reference {
+  color: var(--au-pointer);
+  border-color: rgba(183, 122, 200, 0.40);
+}
+
+
+/* ============================================================
+   50. MEMORY VISUALIZATION
+   ============================================================ */
+
+.au-memory-cell {
+  background: var(--au-surface-high);
+  border: 1px solid var(--au-border);
+
+  font-family: var(--au-font-mono);
+}
+
+.au-memory-cell-current {
+  background: var(--au-memory-soft);
+  border-color: rgba(197, 138, 85, 0.45);
+}
+
+.au-memory-cell-changed {
+  animation: au-memory-change 500ms var(--au-ease-out);
+}
+
+@keyframes au-memory-change {
+  0% {
+    background: var(--au-memory-medium);
+    transform: scale(1.02);
+  }
+
+  100% {
+    background: var(--au-memory-soft);
+    transform: scale(1);
+  }
+}
+
+
+/* ============================================================
+   51. RECURSION / CALL STACK
+   ============================================================ */
+
+.au-stack-frame {
+  background: var(--au-surface-high);
+  border: 1px solid var(--au-border);
+  border-radius: var(--au-radius-md);
+
+  transition:
+    border-color var(--au-duration-fast) ease,
+    background-color var(--au-duration-fast) ease;
+}
+
+.au-stack-frame-current {
+  background: var(--au-algorithm-soft);
+  border-color: rgba(139, 124, 200, 0.40);
+}
+
+
+/* ============================================================
+   52. KEYBOARD SHORTCUTS
+   ============================================================ */
+
+.au-kbd {
+  min-width: 22px;
+  min-height: 22px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 6px;
+
+  color: var(--au-text-secondary);
+  background: var(--au-surface-high);
+
+  border: 1px solid var(--au-border);
+  border-bottom-color: var(--au-border-strong);
+
+  border-radius: var(--au-radius-sm);
+
+  font-family: var(--au-font-mono);
+  font-size: 10px;
+}
+
+
+/* ============================================================
+   53. TEXT UTILITIES
+   ============================================================ */
+
+.au-text-primary {
+  color: var(--au-text);
+}
+
+.au-text-secondary {
+  color: var(--au-text-secondary);
+}
+
+.au-text-muted {
+  color: var(--au-text-muted);
+}
+
+.au-text-disabled {
+  color: var(--au-text-disabled);
+}
+
+.au-text-mono {
+  font-family: var(--au-font-mono);
+}
+
+
+/* ============================================================
+   54. TRUNCATION
+   ============================================================ */
+
+.au-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.au-line-clamp-2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+
+  overflow: hidden;
+}
+
+
+/* ============================================================
+   55. SURFACE UTILITIES
+   ============================================================ */
+
+.au-surface {
+  background: var(--au-surface);
+}
+
+.au-surface-elevated {
+  background: var(--au-surface-elevated);
+}
+
+.au-surface-high {
+  background: var(--au-surface-high);
+}
+
+
+/* ============================================================
+   56. BORDER UTILITIES
+   ============================================================ */
+
+.au-border {
+  border: 1px solid var(--au-border);
+}
+
+.au-border-subtle {
+  border: 1px solid var(--au-border-subtle);
+}
+
+.au-border-strong {
+  border: 1px solid var(--au-border-strong);
+}
+
+
+/* ============================================================
+   57. RADIUS UTILITIES
+   ============================================================ */
+
+.au-rounded-sm {
+  border-radius: var(--au-radius-sm);
+}
+
+.au-rounded-md {
+  border-radius: var(--au-radius-md);
+}
+
+.au-rounded-lg {
+  border-radius: var(--au-radius-lg);
+}
+
+.au-rounded-xl {
+  border-radius: var(--au-radius-xl);
+}
+
+.au-rounded-pill {
+  border-radius: var(--au-radius-pill);
+}
+
+
+/* ============================================================
+   58. VISIBILITY / UX
+   ============================================================ */
+
+.au-no-select {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.au-selectable {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+.au-no-pointer {
+  pointer-events: none;
+}
+
+.au-scroll {
+  overflow: auto;
+}
+
+.au-scroll-x {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.au-scroll-y {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.au-no-scroll {
+  overflow: hidden;
+}
+
+
+/* ============================================================
+   59. DRAG REGIONS
+   ============================================================ */
+
+[data-tauri-drag-region] {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+
+/* ============================================================
+   60. RESPONSIVE DESKTOP BEHAVIOR
+   ============================================================ */
+
+/*
+   AlgoUnfold is desktop-only.
+
+   We do NOT convert the application into a mobile layout.
+   At smaller desktop resolutions we simply reduce spacing
+   and preserve the visualization workspace.
+*/
+
+@media (max-width: 1200px) {
+
+  :root {
+    --au-space-6: 20px;
+    --au-space-8: 28px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+}
+
+
+/* ============================================================
+   61. HIGH CONTRAST SUPPORT
+   ============================================================ */
+
+@media (prefers-contrast: more) {
+
+  :root {
+    --au-border: #2a3a4b;
+    --au-border-subtle: #1d2b39;
+
+    --au-text-secondary: #b8c4ce;
+    --au-text-muted: #81909d;
+  }
+
+  :focus-visible {
+    outline-width: 3px;
+  }
+}
+
+
+/* ============================================================
+   62. REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* ============================================================
+   63. PRINT
+   ============================================================ */
+
+@media print {
+
   body {
-    @apply bg-background text-foreground;
-    }
-  html {
-    @apply font-sans;
-    }
+    background: #ffffff;
+    color: #000000;
+    overflow: visible;
+  }
+
+  #root {
+    background: #ffffff;
+  }
 }
+
+
+
+/* =========================================================
+   ALGO UNFOLD — LESSON / EBOOK SYSTEM
+   ========================================================= */
+
+.lesson-page {
+  min-height: 100%;
+  width: 100%;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+
+/* =========================================================
+   TOP BAR
+   ========================================================= */
+
+.lesson-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+
+  height: 56px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 28px;
+
+  background: color-mix(
+    in srgb,
+    var(--background) 92%,
+    transparent
+  );
+
+  border-bottom: 1px solid var(--border);
+
+  backdrop-filter: blur(14px);
+}
+
+.lesson-topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.lesson-back-button {
+  width: 34px;
+  height: 34px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 9px;
+  border: 1px solid transparent;
+
+  background: transparent;
+  color: var(--muted-foreground);
+
+  cursor: pointer;
+
+  transition:
+    background 150ms ease,
+    color 150ms ease;
+}
+
+.lesson-back-button:hover {
+  background: var(--muted);
+  color: var(--foreground);
+}
+
+.lesson-breadcrumb {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted-foreground);
+}
+
+.lesson-counter {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted-foreground);
+
+  font-variant-numeric: tabular-nums;
+}
+
+
+/* =========================================================
+   MAIN LAYOUT
+   ========================================================= */
+
+.lesson-layout {
+  width: 100%;
+  max-width: 1500px;
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns:
+    230px
+    minmax(0, 760px)
+    1fr;
+
+  gap: 56px;
+
+  padding:
+    44px
+    48px
+    100px;
+}
+
+
+/* =========================================================
+   TABLE OF CONTENTS
+   ========================================================= */
+
+.lesson-sidebar {
+  position: sticky;
+  top: 88px;
+
+  align-self: start;
+
+  max-height: calc(100vh - 110px);
+
+  overflow-y: auto;
+
+  padding-right: 10px;
+}
+
+.lesson-sidebar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.lesson-sidebar::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 999px;
+}
+
+.lesson-sidebar-title {
+  margin-bottom: 14px;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  color: var(--muted-foreground);
+}
+
+.lesson-sidebar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.lesson-sidebar-item {
+  width: 100%;
+}
+
+.lesson-sidebar-link {
+  width: 100%;
+
+  display: flex;
+  align-items: flex-start;
+
+  gap: 9px;
+
+  padding: 7px 9px;
+
+  border-radius: 7px;
+
+  color: var(--muted-foreground);
+
+  text-decoration: none;
+
+  font-size: 12px;
+  line-height: 1.45;
+
+  transition:
+    background 150ms ease,
+    color 150ms ease;
+}
+
+.lesson-sidebar-link:hover {
+  background: var(--muted);
+  color: var(--foreground);
+}
+
+.lesson-sidebar-link.active {
+  background: color-mix(
+    in srgb,
+    var(--primary) 10%,
+    transparent
+  );
+
+  color: var(--primary);
+
+  font-weight: 600;
+}
+
+.lesson-sidebar-number {
+  flex: 0 0 auto;
+
+  width: 22px;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  color: var(--muted-foreground);
+
+  font-variant-numeric: tabular-nums;
+}
+
+
+/* =========================================================
+   ARTICLE
+   ========================================================= */
+
+.lesson-article {
+  min-width: 0;
+  width: 100%;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.lesson-hero {
+  margin-bottom: 58px;
+}
+
+.lesson-eyebrow {
+  margin-bottom: 14px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  color: var(--primary);
+
+  letter-spacing: 0.04em;
+}
+
+.lesson-title {
+  margin: 0;
+
+  max-width: 760px;
+
+  font-size: clamp(
+    36px,
+    4vw,
+    52px
+  );
+
+  line-height: 1.08;
+
+  letter-spacing: -0.035em;
+
+  font-weight: 750;
+}
+
+.lesson-description {
+  max-width: 680px;
+
+  margin-top: 20px;
+
+  font-size: 18px;
+  line-height: 1.65;
+
+  color: var(--muted-foreground);
+}
+
+.lesson-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 9px;
+
+  margin-top: 22px;
+
+  font-size: 12px;
+  color: var(--muted-foreground);
+}
+
+.lesson-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.lesson-meta-dot {
+  opacity: 0.45;
+}
+
+
+/* =========================================================
+   ARTICLE CONTENT
+   ========================================================= */
+
+.lesson-content {
+  width: 100%;
+
+  font-size: 16px;
+  line-height: 1.85;
+
+  color: var(--foreground);
+}
+
+.lesson-content > * {
+  margin-top: 0;
+}
+
+.lesson-content p {
+  margin: 0 0 22px;
+
+  color: var(--muted-foreground);
+}
+
+.lesson-content strong {
+  color: var(--foreground);
+  font-weight: 650;
+}
+
+
+/* =========================================================
+   HEADINGS
+   ========================================================= */
+
+.lesson-content h2 {
+  margin-top: 68px;
+  margin-bottom: 20px;
+
+  padding-top: 10px;
+
+  font-size: 28px;
+  line-height: 1.25;
+
+  letter-spacing: -0.025em;
+
+  font-weight: 720;
+
+  scroll-margin-top: 90px;
+}
+
+.lesson-content h3 {
+  margin-top: 40px;
+  margin-bottom: 14px;
+
+  font-size: 20px;
+  line-height: 1.35;
+
+  font-weight: 680;
+
+  letter-spacing: -0.015em;
+
+  scroll-margin-top: 90px;
+}
+
+
+/* =========================================================
+   SECTION NUMBER
+   ========================================================= */
+
+.lesson-section {
+  position: relative;
+}
+
+.lesson-section-number {
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-size: 11px;
+  font-weight: 750;
+
+  color: var(--primary);
+
+  letter-spacing: 0.08em;
+
+  font-variant-numeric: tabular-nums;
+}
+
+
+/* =========================================================
+   DEFINITION / NOTE / EXAMPLE
+   ========================================================= */
+
+.lesson-callout {
+  margin: 30px 0;
+
+  padding: 22px 24px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 12px;
+
+  background: var(--card);
+}
+
+.lesson-callout-label {
+  margin-bottom: 7px;
+
+  font-size: 10px;
+  font-weight: 750;
+
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+
+  color: var(--muted-foreground);
+}
+
+.lesson-callout-title {
+  margin-bottom: 7px;
+
+  font-size: 16px;
+  font-weight: 680;
+
+  color: var(--foreground);
+}
+
+.lesson-callout p {
+  margin: 0;
+
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.lesson-definition {
+  border-left: 3px solid var(--primary);
+}
+
+.lesson-example {
+  background:
+    color-mix(
+      in srgb,
+      var(--primary) 5%,
+      var(--card)
+    );
+}
+
+.lesson-note {
+  background: var(--muted);
+}
+
+.lesson-callout-icon {
+  width: 30px;
+  height: 30px;
+
+  display: grid;
+  place-items: center;
+
+  flex-shrink: 0;
+
+  border-radius: 8px;
+
+  background: var(--muted);
+}
+
+
+/* =========================================================
+   EQUATIONS
+   ========================================================= */
+
+.lesson-equation {
+  margin: 40px 0;
+
+  padding: 28px 20px;
+
+  text-align: center;
+
+  overflow-x: auto;
+
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.lesson-equation .katex {
+  font-size: 1.35em;
+}
+
+.lesson-equation figcaption {
+  max-width: 620px;
+
+  margin: 18px auto 0;
+
+  font-size: 13px;
+  line-height: 1.6;
+
+  color: var(--muted-foreground);
+}
+
+
+/* =========================================================
+   INLINE MATH
+   ========================================================= */
+
+.lesson-inline-math {
+  display: inline-block;
+
+  margin: 0 2px;
+}
+
+.lesson-inline-math .katex {
+  font-size: 1em;
+}
+
+
+/* =========================================================
+   INLINE CODE
+   ========================================================= */
+
+.lesson-content code:not(pre code) {
+  padding: 2px 6px;
+
+  border-radius: 5px;
+
+  background: var(--muted);
+
+  color: var(--foreground);
+
+  font-family:
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    monospace;
+
+  font-size: 0.88em;
+}
+
+
+/* =========================================================
+   CODE BLOCK
+   ========================================================= */
+
+.lesson-code {
+  margin: 30px 0;
+
+  overflow: hidden;
+
+  border: 1px solid var(--border);
+
+  border-radius: 12px;
+
+  background: #0b0f14;
+}
+
+.lesson-code-header {
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 13px;
+
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+
+  color: #8b95a5;
+
+  font-size: 11px;
+}
+
+.lesson-code-copy {
+  border: 0;
+
+  background: transparent;
+
+  color: #8b95a5;
+
+  font-size: 11px;
+
+  cursor: pointer;
+}
+
+.lesson-code-copy:hover {
+  color: white;
+}
+
+.lesson-code pre {
+  margin: 0;
+
+  padding: 20px;
+
+  overflow-x: auto;
+
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.lesson-code code {
+  color: #d7dee9;
+
+  font-family:
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    monospace;
+}
+
+
+/* =========================================================
+   VISUALIZER
+   ========================================================= */
+
+.lesson-visualizer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 24px;
+
+  margin: 42px 0;
+
+  padding: 24px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(
+        in srgb,
+        var(--primary) 7%,
+        var(--card)
+      ),
+      var(--card)
+    );
+}
+
+.lesson-visualizer h3 {
+  margin: 0 0 6px;
+}
+
+.lesson-visualizer p {
+  margin: 0;
+
+  font-size: 13px;
+}
+
+.lesson-visualizer-button,
+.lesson-primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  flex-shrink: 0;
+
+  padding: 9px 14px;
+
+  border: 0;
+  border-radius: 8px;
+
+  background: var(--primary);
+  color: var(--primary-foreground);
+
+  font-size: 12px;
+  font-weight: 650;
+
+  cursor: pointer;
+
+  transition:
+    transform 150ms ease,
+    opacity 150ms ease;
+}
+
+.lesson-visualizer-button:hover,
+.lesson-primary-button:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   TAKEAWAYS
+   ========================================================= */
+
+.lesson-takeaways {
+  margin: 42px 0;
+
+  padding: 24px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 12px;
+
+  background: var(--card);
+}
+
+.lesson-takeaways ul {
+  margin: 14px 0 0;
+  padding-left: 20px;
+
+  color: var(--muted-foreground);
+}
+
+.lesson-takeaways li {
+  margin-bottom: 8px;
+}
+
+
+/* =========================================================
+   PRACTICE / MASTERY
+   ========================================================= */
+
+.lesson-end-card {
+  margin-top: 64px;
+
+  padding: 30px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 16px;
+
+  background: var(--card);
+}
+
+.lesson-end-card h3 {
+  margin: 6px 0 10px;
+
+  font-size: 22px;
+}
+
+.lesson-end-card p {
+  max-width: 580px;
+}
+
+.lesson-mastery {
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(
+        in srgb,
+        var(--primary) 8%,
+        var(--card)
+      ),
+      var(--card)
+    );
+}
+
+
+/* =========================================================
+   RIGHT SIDE — OPTIONAL ARTICLE INFO
+   ========================================================= */
+
+.lesson-right-rail {
+  position: sticky;
+  top: 88px;
+
+  align-self: start;
+
+  padding-top: 8px;
+}
+
+.lesson-right-card {
+  padding: 16px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 10px;
+
+  background: var(--card);
+}
+
+.lesson-right-card-title {
+  margin-bottom: 10px;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+
+  color: var(--muted-foreground);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .lesson-layout {
+    grid-template-columns:
+      200px
+      minmax(0, 760px);
+
+    gap: 36px;
+
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .lesson-right-rail {
+    display: none;
+  }
+}
+
+
+@media (max-width: 800px) {
+  .lesson-layout {
+    display: block;
+
+    padding:
+      32px
+      22px
+      80px;
+  }
+
+  .lesson-sidebar {
+    position: relative;
+    top: auto;
+
+    max-height: none;
+
+    margin-bottom: 34px;
+
+    padding: 14px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    background: var(--card);
+  }
+
+  .lesson-sidebar-list {
+    display: grid;
+
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 4px;
+  }
+
+  .lesson-title {
+    font-size: 36px;
+  }
+
+  .lesson-description {
+    font-size: 16px;
+  }
+
+  .lesson-visualizer {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+}
+
+
+@media (max-width: 520px) {
+  .lesson-topbar {
+    padding: 0 16px;
+  }
+
+  .lesson-layout {
+    padding:
+      24px
+      16px
+      60px;
+  }
+
+  .lesson-sidebar-list {
+    display: flex;
+  }
+
+  .lesson-title {
+    font-size: 31px;
+  }
+
+  .lesson-content {
+    font-size: 15px;
+  }
+
+  .lesson-content h2 {
+    font-size: 25px;
+  }
+}
+
+
+/* =========================================================
+   LESSON MEDIA
+   ========================================================= */
+
+.lesson-media {
+  margin: 42px 0;
+}
+
+.lesson-image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 220px;
+
+  overflow: hidden;
+
+  border: 1px solid var(--border);
+  border-radius: 16px;
+
+  background:
+    radial-gradient(
+      circle at 30% 20%,
+      color-mix(
+        in srgb,
+        var(--primary) 8%,
+        transparent
+      ),
+      transparent 50%
+    ),
+    var(--card);
+}
+
+.lesson-image {
+  display: block;
+
+  max-width: 100%;
+  height: auto;
+}
+
+.lesson-media figcaption {
+  margin-top: 12px;
+
+  text-align: center;
+
+  font-size: 12px;
+  line-height: 1.5;
+
+  color: var(--muted-foreground);
+}
+
+
+/* =========================================================
+   COLORFUL CALLOUTS
+   ========================================================= */
+
+.lesson-definition {
+  border-left-color: #3b82f6;
+}
+
+.lesson-example {
+  border-left: 3px solid #f59e0b;
+}
+
+.lesson-insight {
+  border-left: 3px solid #8b5cf6;
+
+  background:
+    color-mix(
+      in srgb,
+      #8b5cf6 6%,
+      var(--card)
+    );
+}
+
+.lesson-warning {
+  border-left: 3px solid #ef4444;
+
+  background:
+    color-mix(
+      in srgb,
+      #ef4444 5%,
+      var(--card)
+    );
+}
+
+
+/* =========================================================
+   VISUALIZATION BLOCK
+   ========================================================= */
+
+.lesson-visual-block {
+  margin: 48px 0;
+
+  overflow: hidden;
+
+  border: 1px solid var(--border);
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      145deg,
+      color-mix(
+        in srgb,
+        #06b6d4 7%,
+        var(--card)
+      ),
+      var(--card)
+    );
+}
+
+.lesson-visual-header {
+  padding: 24px 26px 18px;
+}
+
+.lesson-visual-header h3 {
+  margin: 4px 0 7px;
+}
+
+.lesson-visual-header p {
+  margin: 0;
+
+  font-size: 13px;
+}
+
+.lesson-animation-stage {
+  min-height: 260px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px;
+
+  background:
+    radial-gradient(
+      circle at center,
+      color-mix(
+        in srgb,
+        #06b6d4 8%,
+        transparent
+      ),
+      transparent 65%
+    );
+}
+
+.lesson-animation {
+  display: block;
+
+  width: 100%;
+  max-width: 680px;
+  max-height: 420px;
+
+  object-fit: contain;
+}
+
+.lesson-animation-controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+
+  padding: 14px 18px;
+
+  border-top: 1px solid var(--border);
+}
+
+.lesson-secondary-button {
+  padding: 8px 12px;
+
+  border: 1px solid var(--border);
+  border-radius: 8px;
+
+  background: var(--background);
+  color: var(--foreground);
+
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.lesson-secondary-button:hover {
+  background: var(--muted);
+}
+
+
+/* =========================================================
+   INTERACTIVE BLOCK
+   ========================================================= */
+
+.lesson-interactive {
+  margin: 48px 0;
+
+  overflow: hidden;
+
+  border: 1px solid var(--border);
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      145deg,
+      color-mix(
+        in srgb,
+        #8b5cf6 7%,
+        var(--card)
+      ),
+      var(--card)
+    );
+}
+
+.lesson-interactive-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 24px 26px;
+}
+
+.lesson-interactive-header h3 {
+  margin: 4px 0 7px;
+}
+
+.lesson-interactive-header p {
+  margin: 0;
+}
+
+.lesson-interactive-badge {
+  flex-shrink: 0;
+
+  padding: 5px 9px;
+
+  border-radius: 999px;
+
+  background:
+    color-mix(
+      in srgb,
+      #8b5cf6 14%,
+      transparent
+    );
+
+  color: #8b5cf6;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.lesson-interactive-placeholder {
+  min-height: 260px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 40px;
+
+  border-top: 1px solid var(--border);
+
+  background:
+    radial-gradient(
+      circle at center,
+      color-mix(
+        in srgb,
+        #8b5cf6 8%,
+        transparent
+      ),
+      transparent 60%
+    );
+
+  color: var(--muted-foreground);
+
+  text-align: center;
+}
+
+.lesson-interactive-icon {
+  width: 48px;
+  height: 48px;
+
+  display: grid;
+  place-items: center;
+
+  margin-bottom: 8px;
+
+  border-radius: 14px;
+
+  background:
+    color-mix(
+      in srgb,
+      #8b5cf6 12%,
+      var(--card)
+    );
+
+  color: #8b5cf6;
+
+  font-size: 22px;
+}
+
+.lesson-interactive-placeholder strong {
+  color: var(--foreground);
+
+  font-size: 14px;
+}
+
+.lesson-interactive-placeholder span {
+  font-size: 12px;
+}
+
+/* ============================================================
+   ANIMATED ADDRESS & POINTER TRANSFER KEYFRAMES
+   ============================================================ */
+
+@keyframes flyAddressUp {
+  0% {
+    transform: translate(0, 40px) scale(0.85);
+    opacity: 0.2;
+  }
+  40% {
+    transform: translate(-20px, -30px) scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0, -95px) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes flyAddressDown {
+  0% {
+    transform: translate(0, -95px) scale(1.15);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(15px, -40px) scale(1.25);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 4px rgba(251, 191, 36, 0.6));
+  }
+  50% {
+    filter: drop-shadow(0 0 14px rgba(251, 191, 36, 0.95));
+  }
+}
+
+.animate-fly-address-up {
+  animation: flyAddressUp 1.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+.animate-fly-address-down {
+  animation: flyAddressDown 1.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 1.8s ease-in-out infinite;
+}
